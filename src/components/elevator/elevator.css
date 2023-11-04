@@ -1,0 +1,33 @@
+.elevator-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-height: 100vh;
+}
+    .elevator-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        padding: 10px;
+        box-shadow: 4px 4px 4px 6px rgba(53, 53, 53, 0.1);
+        border-radius: 10px;
+        gap: 5px;
+    }
+    .elevator-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        box-shadow: 4px 4px 4px 6px rgba(53, 53, 53, 0.1);
+        border-radius: 10px;
+        gap: 5px;
+        padding: 10px;
+        min-height: 400px;
+        min-width: 500px;
+    }
