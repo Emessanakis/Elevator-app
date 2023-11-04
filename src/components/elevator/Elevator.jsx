@@ -7,7 +7,6 @@ export default function Elevator() {
     const { capacity, floors } = useParams();
     const [elevatorDirection, setElevatorDirection] = useState('static'); // Start in static mode
     const [currentFloor, setCurrentFloor] = useState(0);
-    const [passengers, setPassengers] = useState([]);
     const [passengerRequests, setPassengerRequests] = useState([]); // Queue for passenger requests
     const [elevatorPassengerCount, setElevatorPassengerCount] = useState(0);
     const [boarding, setBoarding] = useState(false); // State for boarding mode
@@ -77,12 +76,11 @@ export default function Elevator() {
 
     // Function to handle passengers entering the elevator
     const addPassenger = (request) => {
-        if (passengers.length < capacity) {
+        if (elevatorPassengerCount < capacity) {
             // Check if there are no existing passenger requests and the new floor is greater than or equal to the current floor
             if (passengerRequests.length === 0 && request.sourceFloor >= currentFloor) {
-                setPassengers([...passengers, request.sourceFloor]);
-                setPassengerRequests([...passengerRequests, request]);
                 setElevatorPassengerCount(elevatorPassengerCount + 1);
+                setPassengerRequests([...passengerRequests, request]);
             } else {
                 // Check if the new passenger's requested floor is greater than or equal to the current floor
                 if (request.sourceFloor >= currentFloor) {
@@ -90,18 +88,13 @@ export default function Elevator() {
                     const canAddPassenger = passengerRequests.every(req => request.destinationFloor >= req.destinationFloor);
 
                     if (canAddPassenger) {
-                        setPassengers([...passengers, request.sourceFloor]);
-                        setPassengerRequests([...passengerRequests, request]);
                         setElevatorPassengerCount(elevatorPassengerCount + 1);
-                    } else {
-                        // Handle the case when the passenger's request can't be added (e.g., show an error message)
-                    }
-                } else {
-                    // Handle the case when the passenger's request can't be added (e.g., show an error message)
-                }
+                        setPassengerRequests([...passengerRequests, request]);
+                    } 
+                } 
             }
-        }
-    };
+        } 
+    }
 
     // Simulate elevator movement
     useEffect(() => {
