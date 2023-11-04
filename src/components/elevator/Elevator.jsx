@@ -110,7 +110,8 @@ export default function Elevator() {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [currentFloor, elevatorDirection, passengers, passengerRequests, boarding]);
+    });
+
 
     const floorButtons = Array.from({ length: parseInt(floors) }, (_, index) => index);
 
